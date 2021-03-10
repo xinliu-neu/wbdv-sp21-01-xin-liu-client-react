@@ -1,68 +1,62 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import modulesReducer from "../../reducers/modules-reducer";
+import {combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
+import ModuleList from "./module-list";
+import lessonReducer from "../../reducers/lesson-reducer";
+import LessonTabs from "./lesson-tabs";
+import {useParams, Link} from "react-router-dom";
+import TopicPills from "./topic-pills";
+import topicReducer from "../../reducers/topic-reducer";
+import courseService from "../../services/course-service";
 
-const CourseEditor = ({history}) =>
-    <div>
-      <h2>
-        Go back
-        &nbsp;
-        <i className="fas fa-arrow-left" onClick={() => history.goBack()}></i>
-      </h2>
-      <div className="container">
-        <h1>Course Editor</h1>
-        <div className="row">
-          <div className="col-4">
-            <ul className="list-group">
-              <li className="list-group-item active">Module 1</li>
-              <li className="list-group-item">Module 2</li>
-              <li className="list-group-item">Module 3</li>
-              <li className="list-group-item">Module 4</li>
-              <li className="list-group-item">Module 5</li>
+const reducer = combineReducers({
+  modulesReducer: modulesReducer,
+  lessonReducer: lessonReducer,
+  topicReducer: topicReducer
+})
 
-            </ul>
+const store = createStore(reducer);
 
-          </div>
+const CourseEditor = () => {
+  const {layout, courseId, moduleId} = useParams();
+  const [selectedCourse, setSelectedCourse] = useState("");
 
-          <div className="col-8">
-            <ul className="nav nav-tabs">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page"
-                   href="#">Active</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Build</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Theme</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" href="#" tabIndex="-1"
-                   aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
+  useEffect(() => {
+    courseService.findCourseById(courseId)
+        .then(course => setSelectedCourse(course))
+  }, [])
 
-            <br/>
+  return (
+    <Provider store={store}>
+        <div className="container-fluid">
+          <h3>
+            <Link to={`/courses/${layout}`}>
+              <i className="fas fa-times"></i>
+            </Link>
+            &nbsp;
+            {selectedCourse.title}
+          </h3>
+          <div className="row">
+            <div className="col-4">
+              <ModuleList/>
+            </div>
 
-            <ul className="nav nav-pills">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page"
-                   href="#">Active</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Topic 1</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Topic 2</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" href="#" tabIndex="-1"
-                   aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
+            <div className="col-8">
+              <ul className="nav nav-tabs">
+                <LessonTabs/>
+              </ul>
 
-            Content intentionally left blank
+              <br/>
+
+              <ul className="nav nav-pills">
+                <TopicPills/>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+    </Provider>
+  )
+}
 
 export default CourseEditor
