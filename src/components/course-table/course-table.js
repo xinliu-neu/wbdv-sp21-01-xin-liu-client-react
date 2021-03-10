@@ -32,7 +32,7 @@ const CourseTable = (
           courses.map(course =>
               <CourseRow
                   deleteCourse={deleteCourse}
-                  updateCourse ={updateCourse}
+                  updateCourse={updateCourse}
                   course={course}
                   title={course.title}
                   lastModified={course.lastModified}

@@ -3,7 +3,6 @@ import CourseCard from "./course-card";
 import {Link} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const CourseGrid = (
     {
       courses,
@@ -43,7 +42,6 @@ const CourseGrid = (
         </div>
       </div>
     </div>
-
 
 export default CourseGrid
 
