@@ -14,7 +14,6 @@ const HeadingWidget = ({widget, setEditingWidget, editing}) => {
                 ...localWidget,
                 type: e.target.value
               });
-              console.log("change type", localWidget);
               setEditingWidget({
                 ...localWidget,
                 type: e.target.value
@@ -23,6 +22,8 @@ const HeadingWidget = ({widget, setEditingWidget, editing}) => {
                     value={localWidget.type} className="form-control">
               <option value="HEADING">Heading</option>
               <option value="PARAGRAPH">Paragraph</option>
+              <option value="LIST">List</option>
+              <option value="IMAGE">Image</option>
             </select>
 
             <br/>
