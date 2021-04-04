@@ -4,6 +4,8 @@ import widgetService from "../../services/widget-service"
 import {useParams} from "react-router-dom";
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
+import ListWidget from "./list-widget";
+import ImageWidget from "./image-widget";
 
 const WidgetList = (
     {
@@ -39,7 +41,6 @@ const WidgetList = (
                     <>
                       <i onClick={() => {
                         updateWidget(editingWidget);
-                        console.log("update", editingWidget)
                         setEditingWidget({});
                       }} className="fas fa-2x fa-check ml-2 float-right"/>
 
@@ -60,16 +61,26 @@ const WidgetList = (
                   {
                     widget.type === "HEADING" &&
                     <HeadingWidget widget={widget}
-                                   editingWidget={editingWidget}
                                    setEditingWidget={setEditingWidget}
                                    editing={editingWidget.id === widget.id}/>
                   }
                   {
                     widget.type === "PARAGRAPH" &&
                     <ParagraphWidget widget={widget}
-                                     editingWidget={editingWidget}
                                      setEditingWidget={setEditingWidget}
                                      editing={editingWidget.id === widget.id}/>
+                  }
+                  {
+                    widget.type === "LIST" &&
+                    <ListWidget widget={widget}
+                                setEditingWidget={setEditingWidget}
+                                editing={editingWidget.id === widget.id}/>
+                  }
+                  {
+                    widget.type === "IMAGE" &&
+                    <ImageWidget widget={widget}
+                                 setEditingWidget={setEditingWidget}
+                                 editing={editingWidget.id === widget.id}/>
                   }
                 </li>
             )
