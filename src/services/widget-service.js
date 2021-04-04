@@ -1,4 +1,5 @@
-const API_URL = "https://wbdv-sp21-01-xin-liu-server.herokuapp.com/api"
+// const API_URL = "https://wbdv-sp21-01-xin-liu-server.herokuapp.com/api"
+const API_URL = "http://localhost:8080/api"
 
 export const createWidget = (tid, widget) =>
     fetch(`${API_URL}/topics/${tid}/widgets`, {
