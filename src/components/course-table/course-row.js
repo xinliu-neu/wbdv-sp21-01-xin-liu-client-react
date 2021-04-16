@@ -32,7 +32,7 @@ const CourseRow = (
       <tr>
         <td>
           {
-            !editing && <i className="fas fa-file"></i>
+            !editing && <i className="fas fa-file"/>
           }
           &nbsp;
           {
@@ -49,7 +49,7 @@ const CourseRow = (
             </input>
           }
         </td>
-        <td className="d-none d-md-table-cell">{course.owner}</td>
+        <td className="d-none d-md-table-cell" scope="col-2" style={{width: '25%'}}>{course.owner}</td>
         <td className="d-none d-lg-table-cell">{course.lastModified}</td>
         <td>
           <Link to={`/courses/${course._id}/quizzes`}>
@@ -60,19 +60,19 @@ const CourseRow = (
           {
             editing &&
             <i onClick={() => deleteCourseHelper()}
-               className="fas fa-times text-danger fa-2x ml-4 float-right"></i>
+               className="fas fa-times text-danger fa-2x ml-4 float-right"/>
           }
 
           {
             editing &&
             <i onClick={() => saveCourse()}
-               className="fas fa-check text-success fa-2x float-right"></i>
+               className="fas fa-check text-success fa-2x float-right"/>
           }
 
           {
             !editing &&
             <i onClick={() => setEditing(true)}
-               className="fas fa-edit fa-2x float-right"></i>
+               className="fas fa-edit fa-2x float-right"/>
           }
         </td>
       </tr>)
