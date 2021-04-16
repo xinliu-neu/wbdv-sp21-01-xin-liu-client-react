@@ -11,6 +11,7 @@ import CourseEditor from "./course-editor/course-editor";
 import moduleService from "../services/module-service";
 import lessonService from "../services/lesson-service";
 import topicService from "../services/topic-service";
+import QuizzesList from "./quizzes/quizzes-list";
 
 class CourseManager extends React.Component {
   state = {
@@ -176,6 +177,7 @@ class CourseManager extends React.Component {
                  exact={true}>
             <CourseEditor allCourses={this.state.courses}/>
           </Route>
+
         </div>
 
     )

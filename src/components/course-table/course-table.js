@@ -20,6 +20,9 @@ const CourseTable = (
           <td className="d-none d-lg-table-cell">
             <h5>Last modified</h5>
           </td>
+          <td className="d-none d-lg-table-cell">
+            <h5>Quizzes</h5>
+          </td>
           <td>
             <Link to="/courses/grid">
               <i className="fas fa-th fa-2x ml-4 float-right"></i>
