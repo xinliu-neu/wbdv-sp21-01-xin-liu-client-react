@@ -8,12 +8,14 @@ const Question = props => {
           {
             props.question.type === "TRUE_FALSE" &&
             <TrueFalseQuestion
-                question={props.question}/>
+                question={props.question} isGraded={props.isGraded}
+                updateAnswer={props.updateAnswer}/>
           }
           {
             props.question.type === "MULTIPLE_CHOICE" &&
             <MultipleChoiceQuestion
-                question={props.question}/>
+                question={props.question} isGraded={props.isGraded}
+                updateAnswer={props.updateAnswer}/>
           }
         </ul>
       </div>

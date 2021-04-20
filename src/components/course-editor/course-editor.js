@@ -11,15 +11,17 @@ import topicReducer from "../../reducers/topic-reducer";
 import courseService from "../../services/course-service";
 import WidgetList from "../widgets/widget-list";
 import widgetReducer from "../../reducers/widget-reducer";
+import quizReducer from "../../reducers/quiz-reducer";
 
-const reducer = combineReducers({
-  modulesReducer: modulesReducer,
-  lessonReducer: lessonReducer,
-  topicReducer: topicReducer,
-  widgetReducer: widgetReducer
-})
-
-const store = createStore(reducer);
+// const reducer = combineReducers({
+//   modulesReducer: modulesReducer,
+//   lessonReducer: lessonReducer,
+//   topicReducer: topicReducer,
+//   widgetReducer: widgetReducer,
+//   quizReducer: quizReducer,
+// })
+//
+// const store = createStore(reducer);
 
 const CourseEditor = () => {
   const {layout, courseId, moduleId} = useParams();
@@ -31,7 +33,7 @@ const CourseEditor = () => {
   }, [])
 
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
         <div className="container-fluid">
           <h3>
             <Link to={`/courses/${layout}`}>
@@ -62,7 +64,7 @@ const CourseEditor = () => {
             </div>
           </div>
         </div>
-    </Provider>
+    // </Provider>
   )
 }
 

@@ -11,6 +11,7 @@ const findQuizById = (qid) => {
 }
 
 const submitQuiz = (quizId, questions) => {
+  // return fetch(`http://localhost:3000/api/quizzes/${quizId}/attempts`, {
   return fetch(`${QUIZZES_URL}/${quizId}/attempts`, {
     method: 'POST',
     body: JSON.stringify(questions),
