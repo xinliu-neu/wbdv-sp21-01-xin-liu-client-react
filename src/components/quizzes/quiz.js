@@ -31,6 +31,8 @@ const Quiz = ({answers = {}, updateAnswer}) => {
     })
   }
 
+  console.log(questions)
+
   return (
       <div className="container">
         {
