@@ -1,4 +1,4 @@
-const QUIZZES_URL = 'https://wbdv-sp21-xin-liu-server-node.herokuapp.com:45678/api/quizzes';
+const QUIZZES_URL = 'https://wbdv-sp21-xin-liu-server-node.herokuapp.com/api/quizzes';
 
 const findAllQuizzes = () => {
   return fetch(QUIZZES_URL)
