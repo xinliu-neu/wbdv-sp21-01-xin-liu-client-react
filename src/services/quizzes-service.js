@@ -1,4 +1,4 @@
-const QUIZZES_URL = 'http://localhost:3000/api/quizzes';
+const QUIZZES_URL = 'https://wbdv-sp21-xin-liu-server-node.herokuapp.com:45678/api/quizzes';
 
 const findAllQuizzes = () => {
   return fetch(QUIZZES_URL)
@@ -11,7 +11,6 @@ const findQuizById = (qid) => {
 }
 
 const submitQuiz = (quizId, questions) => {
-  // return fetch(`http://localhost:3000/api/quizzes/${quizId}/attempts`, {
   return fetch(`${QUIZZES_URL}/${quizId}/attempts`, {
     method: 'POST',
     body: JSON.stringify(questions),
