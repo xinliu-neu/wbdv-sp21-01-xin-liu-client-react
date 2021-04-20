@@ -1,8 +1,36 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import quizzesService from "../../../services/quizzes-service";
+import attemptService from "../../../services/attempt-service";
+import questionService from "../../../services/questions-service"
+import {useParams} from "react-router-dom";
 
 const TrueFalseQuestion = ({question}) => {
   const [answer, setAnswer] = useState(null)
   const [isGraded, setIsGraded] = useState(false);
+
+  const [quiz, setQuiz] = useState([])
+  const [questions, setQuestions] = useState([])
+  const [attempts, setAttempts] = useState([])
+
+  const {quizId} = useParams();
+
+  const findAttempt = () => {
+    attemptService.findAttemptsForQuiz(quizId)
+    .then((attempts) => {
+      setAttempts(attempts)
+    })
+  }
+
+  useEffect(() => {
+    quizzesService.findQuizById(quizId)
+    .then((quiz) => {
+      setQuiz(quiz)
+    })
+    questionService.findQuestionsForQuiz(quizId)
+    .then((questions) => {
+      setQuestions(questions)
+    })
+  }, [])
 
   return (
       <div className="container">
@@ -50,11 +78,17 @@ const TrueFalseQuestion = ({question}) => {
                     if (answer === null) {
                       alert('Please choose an answer.')
                     } else {
-                      setIsGraded(!isGraded)
+                      console.log(questions)
+                      quizzesService.submitQuiz(quizId, questions).then((attempt) => {
+                        findAttempt();
+                        // setCurrentAttempt(attempt);
+                            setIsGraded(true);
+                      }
+                      )
                     }
                   }
                 }>
-          Grade
+          Submit
         </button>
         <hr/>
       </div>

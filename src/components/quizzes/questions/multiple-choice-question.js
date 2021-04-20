@@ -150,7 +150,7 @@ const MultipleChoiceQuestion = ({question}) => {
                     }
                   }
                 }>
-          Grade
+          Submit
         </button>
         <hr/>
       </div>
